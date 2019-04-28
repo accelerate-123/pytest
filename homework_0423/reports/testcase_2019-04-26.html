@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>前程贷接口自动化测试</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>前程贷接口自动化测试</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-04-26 14:55:41</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:03.800493</p>
+<p class='attribute'><strong>状态:</strong> 通过 16</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>接口执行结果</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='passClass'>
+        <td>test_invest.TestFutureLoanInvest</td>
+        <td>7</td>
+        <td>7</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',7)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_invest_1: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>pt1.1: 2019-04-26 14:55:41,507-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:41,517-INFO-mylog.py-test_invest-日志信息:Execute No.1 testcase 管理员正常登录
+2019-04-26 14:55:41,517-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 1, 'title': '管理员正常登录', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/login', 'data': '{"mobilephone":"#admin_user#","pwd":"#admin_pwd#"}', 'method': 'get', 'expected': '登录成功', 'check_sql': None}
+{"mobilephone":"#admin_user#","pwd":"#admin_pwd#"}
+{"mobilephone":"#admin_user#","pwd":"#admin_pwd#"}
+13811111112
+{"mobilephone":"13811111112","pwd":"#admin_pwd#"}
+123456
+2019-04-26 14:55:41,620-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:41,705-INFO-mylog.py-test_invest-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_invest_2: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        通过</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <pre>pt1.2: 2019-04-26 14:55:41,706-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:41,706-INFO-mylog.py-test_invest-日志信息:Execute No.2 testcase 管理员加标
+2019-04-26 14:55:41,707-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 2, 'title': '管理员加标', 'url': 'http://test.lemonban.com/futureloan/mvc/api/loan/add', 'data': '{"memberId":"#loan_member_id#","title":"世界这么大，想去看一看","amount":20000,"loanRate":"12.0","loanTerm":3,"loanDateType":0,"repaymemtWay":11,"biddingDays":5}', 'method': 'get', 'expected': '加标成功', 'check_sql': '{"sql":"select id from future.loan where memberid = 1296 order by id desc limit 1"}'}
+{"memberId":"#loan_member_id#","title":"世界这么大，想去看一看","amount":20000,"loanRate":"12.0","loanTerm":3,"loanDateType":0,"repaymemtWay":11,"biddingDays":5}
+{"memberId":"#loan_member_id#","title":"世界这么大，想去看一看","amount":20000,"loanRate":"12.0","loanTerm":3,"loanDateType":0,"repaymemtWay":11,"biddingDays":5}
+1296
+标的ID 3946
+2019-04-26 14:55:41,867-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:41,975-INFO-mylog.py-test_invest-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_invest_3: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        通过</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <pre>pt1.3: 2019-04-26 14:55:41,975-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:41,976-INFO-mylog.py-test_invest-日志信息:Execute No.3 testcase 管理员审核
+2019-04-26 14:55:41,976-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 3, 'title': '管理员审核', 'url': 'http://test.lemonban.com/futureloan/mvc/api/loan/audit', 'data': '{"id":"#loan_id#","status":4}', 'method': 'post', 'expected': '更新状态成功：竞标开始，当前标为竞标中状态', 'check_sql': None}
+{"id":"#loan_id#","status":4}
+{"id":"#loan_id#","status":4}
+3946
+2019-04-26 14:55:42,041-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:42,125-INFO-mylog.py-test_invest-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_invest_4: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        通过</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <pre>pt1.4: 2019-04-26 14:55:42,125-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:42,126-INFO-mylog.py-test_invest-日志信息:Execute No.4 testcase 投资人正常登录
+2019-04-26 14:55:42,126-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 4, 'title': '投资人正常登录', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/login', 'data': '{"mobilephone":"#normal_user#","pwd":"#normal_pwd#"}', 'method': 'get', 'expected': '登录成功', 'check_sql': None}
+{"mobilephone":"#normal_user#","pwd":"#normal_pwd#"}
+{"mobilephone":"#normal_user#","pwd":"#normal_pwd#"}
+13811111111
+{"mobilephone":"13811111111","pwd":"#normal_pwd#"}
+123456
+2019-04-26 14:55:42,190-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:42,276-INFO-mylog.py-test_invest-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_invest_5: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        通过</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <pre>pt1.5: 2019-04-26 14:55:42,276-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:42,277-INFO-mylog.py-test_invest-日志信息:Execute No.5 testcase 投资人正常投资
+2019-04-26 14:55:42,277-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 5, 'title': '投资人正常投资', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/bidLoan', 'data': '{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":"100"}', 'method': 'post', 'expected': '竞标成功', 'check_sql': None}
+{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":"100"}
+{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":"100"}
+1296
+{"memberId":"1296","password":"#normal_pwd#","loanId":"#loan_id#","amount":"100"}
+123456
+{"memberId":"1296","password":"123456","loanId":"#loan_id#","amount":"100"}
+3946
+2019-04-26 14:55:42,365-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:42,455-INFO-mylog.py-test_invest-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_invest_6: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        通过</a>
+
+    <div id='div_pt1.6' class="popup_window">
+        <pre>pt1.6: 2019-04-26 14:55:42,455-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:42,456-INFO-mylog.py-test_invest-日志信息:Execute No.6 testcase 投资人投资不输入金额
+2019-04-26 14:55:42,456-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 6, 'title': '投资人投资不输入金额', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/bidLoan', 'data': '{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":""}', 'method': 'post', 'expected': '参数错误:所有参数都不能为空', 'check_sql': None}
+{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":""}
+{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":""}
+1296
+{"memberId":"1296","password":"#normal_pwd#","loanId":"#loan_id#","amount":""}
+123456
+{"memberId":"1296","password":"123456","loanId":"#loan_id#","amount":""}
+3946
+2019-04-26 14:55:42,552-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:42,637-INFO-mylog.py-test_invest-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_invest_7: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        通过</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <pre>pt1.7: 2019-04-26 14:55:42,638-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:42,638-INFO-mylog.py-test_invest-日志信息:Execute No.7 testcase 投资人投资输入负数
+2019-04-26 14:55:42,638-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 7, 'title': '投资人投资输入负数', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/bidLoan', 'data': '{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":"-100"}', 'method': 'post', 'expected': '参数错误，投资金额必须是能被100整除的正整数', 'check_sql': None}
+{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":"-100"}
+{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":"-100"}
+1296
+{"memberId":"1296","password":"#normal_pwd#","loanId":"#loan_id#","amount":"-100"}
+123456
+{"memberId":"1296","password":"123456","loanId":"#loan_id#","amount":"-100"}
+3946
+2019-04-26 14:55:42,704-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:42,787-INFO-mylog.py-test_invest-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>test_recharge.TestFutureLoanRecharge</td>
+        <td>5</td>
+        <td>5</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c2',5)">详情</a></td>
+    </tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_recharge_1: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        通过</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <pre>pt2.1: 2019-04-26 14:55:43,019-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:43,020-INFO-mylog.py-test_recharge-日志信息:Execute No.1 testcase 正常登陆
+2019-04-26 14:55:43,021-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 1, 'title': '正常登陆', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/login', 'data': '{"mobilephone":"13811111111","pwd":"123456"}', 'method': 'post', 'expected': '登录成功', 'check_sql': None}
+{"mobilephone":"13811111111","pwd":"123456"}
+2019-04-26 14:55:43,139-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:43,223-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_recharge_2: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.2')" >
+        通过</a>
+
+    <div id='div_pt2.2' class="popup_window">
+        <pre>pt2.2: 2019-04-26 14:55:43,224-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:43,225-INFO-mylog.py-test_recharge-日志信息:Execute No.2 testcase 正常充值
+2019-04-26 14:55:43,225-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 2, 'title': '正常充值', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"13811111111","amount":"100"}', 'method': 'post', 'expected': '充值成功', 'check_sql': '{"sql":"select leaveamount from future.member where mobilephone=\'13811111111\'"}'}
+{"mobilephone":"13811111111","amount":"100"}
+Before recharge, the price is 5400.00
+Recharge price is 100
+After recharge, the price is 5500.00
+2019-04-26 14:55:43,477-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:43,568-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_recharge_3: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.3')" >
+        通过</a>
+
+    <div id='div_pt2.3' class="popup_window">
+        <pre>pt2.3: 2019-04-26 14:55:43,569-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:43,569-INFO-mylog.py-test_recharge-日志信息:Execute No.3 testcase 充值手机号码不存在
+2019-04-26 14:55:43,570-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 3, 'title': '充值手机号码不存在', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"12345677889","amount":"101"}', 'method': 'post', 'expected': '手机号码格式不正确', 'check_sql': None}
+{"mobilephone":"12345677889","amount":"101"}
+2019-04-26 14:55:43,619-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:43,700-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_recharge_4: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.4')" >
+        通过</a>
+
+    <div id='div_pt2.4' class="popup_window">
+        <pre>pt2.4: 2019-04-26 14:55:43,701-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:43,701-INFO-mylog.py-test_recharge-日志信息:Execute No.4 testcase 充值金额小数点大于两位
+2019-04-26 14:55:43,701-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 4, 'title': '充值金额小数点大于两位', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"15810447878","amount":"102.223"}', 'method': 'post', 'expected': '输入金额的金额小数不能超过两位', 'check_sql': None}
+{"mobilephone":"15810447878","amount":"102.223"}
+2019-04-26 14:55:43,764-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:43,854-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_recharge_5: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.5')" >
+        通过</a>
+
+    <div id='div_pt2.5' class="popup_window">
+        <pre>pt2.5: 2019-04-26 14:55:43,855-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:43,855-INFO-mylog.py-test_recharge-日志信息:Execute No.5 testcase 输入负数
+2019-04-26 14:55:43,855-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 5, 'title': '输入负数', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"15810447878","amount":"-103"}', 'method': 'post', 'expected': '请输入范围在0到50万之间的正数金额', 'check_sql': None}
+{"mobilephone":"15810447878","amount":"-103"}
+2019-04-26 14:55:43,907-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:43,995-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>test_register.TestFutureLoanRegister</td>
+        <td>4</td>
+        <td>4</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c3',4)">详情</a></td>
+    </tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_register_1: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        通过</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <pre>pt3.1: 2019-04-26 14:55:44,191-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:44,191-INFO-mylog.py-test_register-日志信息:Execute No. 1 testcase 注册成功
+2019-04-26 14:55:44,192-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 1, 'title': '注册成功', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "13811111149", "pwd": "123456"}', 'method': 'post', 'expected': '注册成功', 'check_sql': '{"sql":"select count(id) as num from future.member"}'}
+1190
+2019-04-26 14:55:44,463-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:44,591-INFO-mylog.py-test_register-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_register_2: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.2')" >
+        通过</a>
+
+    <div id='div_pt3.2' class="popup_window">
+        <pre>pt3.2: 2019-04-26 14:55:44,591-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:44,592-INFO-mylog.py-test_register-日志信息:Execute No. 2 testcase 密码为空，注册失败
+2019-04-26 14:55:44,592-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 2, 'title': '密码为空，注册失败', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "15810447879", "pwd": ""}', 'method': 'post', 'expected': '密码不能为空', 'check_sql': None}
+2019-04-26 14:55:44,637-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:44,718-INFO-mylog.py-test_register-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_register_3: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.3')" >
+        通过</a>
+
+    <div id='div_pt3.3' class="popup_window">
+        <pre>pt3.3: 2019-04-26 14:55:44,718-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:44,719-INFO-mylog.py-test_register-日志信息:Execute No. 3 testcase 手机号码为空，注册失败
+2019-04-26 14:55:44,719-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 3, 'title': '手机号码为空，注册失败', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "", "pwd": "123458"}', 'method': 'post', 'expected': '手机号不能为空', 'check_sql': None}
+2019-04-26 14:55:44,766-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:44,861-INFO-mylog.py-test_register-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_register_4: dict() -> new empty dictionary</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.4')" >
+        通过</a>
+
+    <div id='div_pt3.4' class="popup_window">
+        <pre>pt3.4: 2019-04-26 14:55:44,862-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:44,862-INFO-mylog.py-test_register-日志信息:Execute No. 4 testcase 重复注册
+2019-04-26 14:55:44,863-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 4, 'title': '重复注册', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "13811111111", "pwd": "123456"}', 'method': 'post', 'expected': '手机号码已被注册', 'check_sql': None}
+2019-04-26 14:55:44,917-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:45,002-INFO-mylog.py-test_register-日志信息:=============End write data============
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>16</td>
+            <td>16</td>
+            <td>0</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:16, name:'通过'},
+                        {value:0, name:'失败'},
+                        {value:0, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>

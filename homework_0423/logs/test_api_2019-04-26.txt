@@ -1,0 +1,164 @@
+2019-04-26 14:55:33,202-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:33,203-INFO-mylog.py-test_invest-日志信息:Execute No.1 testcase 管理员正常登录
+2019-04-26 14:55:33,203-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 1, 'title': '管理员正常登录', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/login', 'data': '{"mobilephone":"#admin_user#","pwd":"#admin_pwd#"}', 'method': 'get', 'expected': '登录成功', 'check_sql': None}
+2019-04-26 14:55:33,328-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:33,420-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:33,421-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:33,421-INFO-mylog.py-test_invest-日志信息:Execute No.2 testcase 管理员加标
+2019-04-26 14:55:33,421-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 2, 'title': '管理员加标', 'url': 'http://test.lemonban.com/futureloan/mvc/api/loan/add', 'data': '{"memberId":"#loan_member_id#","title":"世界这么大，想去看一看","amount":20000,"loanRate":"12.0","loanTerm":3,"loanDateType":0,"repaymemtWay":11,"biddingDays":5}', 'method': 'get', 'expected': '加标成功', 'check_sql': '{"sql":"select id from future.loan where memberid = 1296 order by id desc limit 1"}'}
+2019-04-26 14:55:33,579-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:33,668-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:33,669-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:33,669-INFO-mylog.py-test_invest-日志信息:Execute No.3 testcase 管理员审核
+2019-04-26 14:55:33,669-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 3, 'title': '管理员审核', 'url': 'http://test.lemonban.com/futureloan/mvc/api/loan/audit', 'data': '{"id":"#loan_id#","status":4}', 'method': 'post', 'expected': '更新状态成功：竞标开始，当前标为竞标中状态', 'check_sql': None}
+2019-04-26 14:55:33,724-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:33,807-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:33,807-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:33,808-INFO-mylog.py-test_invest-日志信息:Execute No.4 testcase 投资人正常登录
+2019-04-26 14:55:33,808-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 4, 'title': '投资人正常登录', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/login', 'data': '{"mobilephone":"#normal_user#","pwd":"#normal_pwd#"}', 'method': 'get', 'expected': '登录成功', 'check_sql': None}
+2019-04-26 14:55:33,859-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:33,949-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:33,949-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:33,949-INFO-mylog.py-test_invest-日志信息:Execute No.5 testcase 投资人正常投资
+2019-04-26 14:55:33,950-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 5, 'title': '投资人正常投资', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/bidLoan', 'data': '{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":"100"}', 'method': 'post', 'expected': '竞标成功', 'check_sql': None}
+2019-04-26 14:55:34,021-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:34,101-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:34,102-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:34,102-INFO-mylog.py-test_invest-日志信息:Execute No.6 testcase 投资人投资不输入金额
+2019-04-26 14:55:34,102-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 6, 'title': '投资人投资不输入金额', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/bidLoan', 'data': '{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":""}', 'method': 'post', 'expected': '参数错误:所有参数都不能为空', 'check_sql': None}
+2019-04-26 14:55:34,158-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:34,248-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:34,248-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:34,248-INFO-mylog.py-test_invest-日志信息:Execute No.7 testcase 投资人投资输入负数
+2019-04-26 14:55:34,249-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 7, 'title': '投资人投资输入负数', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/bidLoan', 'data': '{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":"-100"}', 'method': 'post', 'expected': '参数错误，投资金额必须是能被100整除的正整数', 'check_sql': None}
+2019-04-26 14:55:34,299-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:34,392-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:34,607-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:34,608-INFO-mylog.py-test_recharge-日志信息:Execute No.1 testcase 正常登陆
+2019-04-26 14:55:34,609-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 1, 'title': '正常登陆', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/login', 'data': '{"mobilephone":"13811111111","pwd":"123456"}', 'method': 'post', 'expected': '登录成功', 'check_sql': None}
+2019-04-26 14:55:34,707-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:34,790-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+2019-04-26 14:55:34,790-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:34,791-INFO-mylog.py-test_recharge-日志信息:Execute No.2 testcase 正常充值
+2019-04-26 14:55:34,791-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 2, 'title': '正常充值', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"13811111111","amount":"100"}', 'method': 'post', 'expected': '充值成功', 'check_sql': '{"sql":"select leaveamount from future.member where mobilephone=\'13811111111\'"}'}
+2019-04-26 14:55:35,044-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:35,123-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+2019-04-26 14:55:35,124-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:35,124-INFO-mylog.py-test_recharge-日志信息:Execute No.3 testcase 充值手机号码不存在
+2019-04-26 14:55:35,124-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 3, 'title': '充值手机号码不存在', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"12345677889","amount":"101"}', 'method': 'post', 'expected': '手机号码格式不正确', 'check_sql': None}
+2019-04-26 14:55:35,172-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:35,255-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+2019-04-26 14:55:35,256-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:35,256-INFO-mylog.py-test_recharge-日志信息:Execute No.4 testcase 充值金额小数点大于两位
+2019-04-26 14:55:35,256-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 4, 'title': '充值金额小数点大于两位', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"15810447878","amount":"102.223"}', 'method': 'post', 'expected': '输入金额的金额小数不能超过两位', 'check_sql': None}
+2019-04-26 14:55:35,307-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:35,411-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+2019-04-26 14:55:35,411-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:35,411-INFO-mylog.py-test_recharge-日志信息:Execute No.5 testcase 输入负数
+2019-04-26 14:55:35,412-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 5, 'title': '输入负数', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"15810447878","amount":"-103"}', 'method': 'post', 'expected': '请输入范围在0到50万之间的正数金额', 'check_sql': None}
+2019-04-26 14:55:35,459-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:35,544-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+2019-04-26 14:55:35,758-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:35,758-INFO-mylog.py-test_register-日志信息:Execute No. 1 testcase 注册成功
+2019-04-26 14:55:35,760-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 1, 'title': '注册成功', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "13811111148", "pwd": "123456"}', 'method': 'post', 'expected': '注册成功', 'check_sql': '{"sql":"select count(id) as num from future.member"}'}
+2019-04-26 14:55:36,126-ERROR-mylog.py-test_register-日志信息:Execute testcase failed. '注册成功' != '手机号码已被注册'
+- 注册成功
++ 手机号码已被注册
+
+2019-04-26 14:55:36,126-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:36,249-INFO-mylog.py-test_register-日志信息:=============End write data============
+2019-04-26 14:55:36,250-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:36,250-INFO-mylog.py-test_register-日志信息:Execute No. 2 testcase 密码为空，注册失败
+2019-04-26 14:55:36,251-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 2, 'title': '密码为空，注册失败', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "15810447879", "pwd": ""}', 'method': 'post', 'expected': '密码不能为空', 'check_sql': None}
+2019-04-26 14:55:36,297-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:36,397-INFO-mylog.py-test_register-日志信息:=============End write data============
+2019-04-26 14:55:36,397-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:36,398-INFO-mylog.py-test_register-日志信息:Execute No. 3 testcase 手机号码为空，注册失败
+2019-04-26 14:55:36,398-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 3, 'title': '手机号码为空，注册失败', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "", "pwd": "123458"}', 'method': 'post', 'expected': '手机号不能为空', 'check_sql': None}
+2019-04-26 14:55:36,447-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:36,536-INFO-mylog.py-test_register-日志信息:=============End write data============
+2019-04-26 14:55:36,536-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:36,537-INFO-mylog.py-test_register-日志信息:Execute No. 4 testcase 重复注册
+2019-04-26 14:55:36,538-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 4, 'title': '重复注册', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "13811111111", "pwd": "123456"}', 'method': 'post', 'expected': '手机号码已被注册', 'check_sql': None}
+2019-04-26 14:55:36,588-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:36,669-INFO-mylog.py-test_register-日志信息:=============End write data============
+2019-04-26 14:55:41,507-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:41,517-INFO-mylog.py-test_invest-日志信息:Execute No.1 testcase 管理员正常登录
+2019-04-26 14:55:41,517-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 1, 'title': '管理员正常登录', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/login', 'data': '{"mobilephone":"#admin_user#","pwd":"#admin_pwd#"}', 'method': 'get', 'expected': '登录成功', 'check_sql': None}
+2019-04-26 14:55:41,620-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:41,705-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:41,706-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:41,706-INFO-mylog.py-test_invest-日志信息:Execute No.2 testcase 管理员加标
+2019-04-26 14:55:41,707-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 2, 'title': '管理员加标', 'url': 'http://test.lemonban.com/futureloan/mvc/api/loan/add', 'data': '{"memberId":"#loan_member_id#","title":"世界这么大，想去看一看","amount":20000,"loanRate":"12.0","loanTerm":3,"loanDateType":0,"repaymemtWay":11,"biddingDays":5}', 'method': 'get', 'expected': '加标成功', 'check_sql': '{"sql":"select id from future.loan where memberid = 1296 order by id desc limit 1"}'}
+2019-04-26 14:55:41,867-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:41,975-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:41,975-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:41,976-INFO-mylog.py-test_invest-日志信息:Execute No.3 testcase 管理员审核
+2019-04-26 14:55:41,976-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 3, 'title': '管理员审核', 'url': 'http://test.lemonban.com/futureloan/mvc/api/loan/audit', 'data': '{"id":"#loan_id#","status":4}', 'method': 'post', 'expected': '更新状态成功：竞标开始，当前标为竞标中状态', 'check_sql': None}
+2019-04-26 14:55:42,041-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:42,125-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:42,125-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:42,126-INFO-mylog.py-test_invest-日志信息:Execute No.4 testcase 投资人正常登录
+2019-04-26 14:55:42,126-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 4, 'title': '投资人正常登录', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/login', 'data': '{"mobilephone":"#normal_user#","pwd":"#normal_pwd#"}', 'method': 'get', 'expected': '登录成功', 'check_sql': None}
+2019-04-26 14:55:42,190-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:42,276-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:42,276-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:42,277-INFO-mylog.py-test_invest-日志信息:Execute No.5 testcase 投资人正常投资
+2019-04-26 14:55:42,277-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 5, 'title': '投资人正常投资', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/bidLoan', 'data': '{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":"100"}', 'method': 'post', 'expected': '竞标成功', 'check_sql': None}
+2019-04-26 14:55:42,365-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:42,455-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:42,455-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:42,456-INFO-mylog.py-test_invest-日志信息:Execute No.6 testcase 投资人投资不输入金额
+2019-04-26 14:55:42,456-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 6, 'title': '投资人投资不输入金额', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/bidLoan', 'data': '{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":""}', 'method': 'post', 'expected': '参数错误:所有参数都不能为空', 'check_sql': None}
+2019-04-26 14:55:42,552-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:42,637-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:42,638-INFO-mylog.py-test_invest-日志信息:==============================
+2019-04-26 14:55:42,638-INFO-mylog.py-test_invest-日志信息:Execute No.7 testcase 投资人投资输入负数
+2019-04-26 14:55:42,638-INFO-mylog.py-test_invest-日志信息:Request Data is: {'case_id': 7, 'title': '投资人投资输入负数', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/bidLoan', 'data': '{"memberId":"#normal_member_id#","password":"#normal_pwd#","loanId":"#loan_id#","amount":"-100"}', 'method': 'post', 'expected': '参数错误，投资金额必须是能被100整除的正整数', 'check_sql': None}
+2019-04-26 14:55:42,704-INFO-mylog.py-test_invest-日志信息:=============Begin write data============
+2019-04-26 14:55:42,787-INFO-mylog.py-test_invest-日志信息:=============End write data============
+2019-04-26 14:55:43,019-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:43,020-INFO-mylog.py-test_recharge-日志信息:Execute No.1 testcase 正常登陆
+2019-04-26 14:55:43,021-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 1, 'title': '正常登陆', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/login', 'data': '{"mobilephone":"13811111111","pwd":"123456"}', 'method': 'post', 'expected': '登录成功', 'check_sql': None}
+2019-04-26 14:55:43,139-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:43,223-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+2019-04-26 14:55:43,224-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:43,225-INFO-mylog.py-test_recharge-日志信息:Execute No.2 testcase 正常充值
+2019-04-26 14:55:43,225-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 2, 'title': '正常充值', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"13811111111","amount":"100"}', 'method': 'post', 'expected': '充值成功', 'check_sql': '{"sql":"select leaveamount from future.member where mobilephone=\'13811111111\'"}'}
+2019-04-26 14:55:43,477-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:43,568-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+2019-04-26 14:55:43,569-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:43,569-INFO-mylog.py-test_recharge-日志信息:Execute No.3 testcase 充值手机号码不存在
+2019-04-26 14:55:43,570-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 3, 'title': '充值手机号码不存在', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"12345677889","amount":"101"}', 'method': 'post', 'expected': '手机号码格式不正确', 'check_sql': None}
+2019-04-26 14:55:43,619-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:43,700-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+2019-04-26 14:55:43,701-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:43,701-INFO-mylog.py-test_recharge-日志信息:Execute No.4 testcase 充值金额小数点大于两位
+2019-04-26 14:55:43,701-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 4, 'title': '充值金额小数点大于两位', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"15810447878","amount":"102.223"}', 'method': 'post', 'expected': '输入金额的金额小数不能超过两位', 'check_sql': None}
+2019-04-26 14:55:43,764-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:43,854-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+2019-04-26 14:55:43,855-INFO-mylog.py-test_recharge-日志信息:==============================
+2019-04-26 14:55:43,855-INFO-mylog.py-test_recharge-日志信息:Execute No.5 testcase 输入负数
+2019-04-26 14:55:43,855-INFO-mylog.py-test_recharge-日志信息:Request Data is: {'case_id': 5, 'title': '输入负数', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/recharge', 'data': '{"mobilephone":"15810447878","amount":"-103"}', 'method': 'post', 'expected': '请输入范围在0到50万之间的正数金额', 'check_sql': None}
+2019-04-26 14:55:43,907-INFO-mylog.py-test_recharge-日志信息:=============Begin write data============
+2019-04-26 14:55:43,995-INFO-mylog.py-test_recharge-日志信息:=============End write data============
+2019-04-26 14:55:44,191-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:44,191-INFO-mylog.py-test_register-日志信息:Execute No. 1 testcase 注册成功
+2019-04-26 14:55:44,192-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 1, 'title': '注册成功', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "13811111149", "pwd": "123456"}', 'method': 'post', 'expected': '注册成功', 'check_sql': '{"sql":"select count(id) as num from future.member"}'}
+2019-04-26 14:55:44,463-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:44,591-INFO-mylog.py-test_register-日志信息:=============End write data============
+2019-04-26 14:55:44,591-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:44,592-INFO-mylog.py-test_register-日志信息:Execute No. 2 testcase 密码为空，注册失败
+2019-04-26 14:55:44,592-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 2, 'title': '密码为空，注册失败', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "15810447879", "pwd": ""}', 'method': 'post', 'expected': '密码不能为空', 'check_sql': None}
+2019-04-26 14:55:44,637-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:44,718-INFO-mylog.py-test_register-日志信息:=============End write data============
+2019-04-26 14:55:44,718-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:44,719-INFO-mylog.py-test_register-日志信息:Execute No. 3 testcase 手机号码为空，注册失败
+2019-04-26 14:55:44,719-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 3, 'title': '手机号码为空，注册失败', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "", "pwd": "123458"}', 'method': 'post', 'expected': '手机号不能为空', 'check_sql': None}
+2019-04-26 14:55:44,766-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:44,861-INFO-mylog.py-test_register-日志信息:=============End write data============
+2019-04-26 14:55:44,862-INFO-mylog.py-test_register-日志信息:=================================
+2019-04-26 14:55:44,862-INFO-mylog.py-test_register-日志信息:Execute No. 4 testcase 重复注册
+2019-04-26 14:55:44,863-INFO-mylog.py-test_register-日志信息:Request Data is {'case_id': 4, 'title': '重复注册', 'url': 'http://test.lemonban.com/futureloan/mvc/api/member/register', 'data': '{"mobilephone": "13811111111", "pwd": "123456"}', 'method': 'post', 'expected': '手机号码已被注册', 'check_sql': None}
+2019-04-26 14:55:44,917-INFO-mylog.py-test_register-日志信息:=============Begin write data============
+2019-04-26 14:55:45,002-INFO-mylog.py-test_register-日志信息:=============End write data============
